@@ -1,0 +1,10 @@
+""" elif 'google 'in query:
+                try:
+                    from googlesearch  import search 
+                except ImportError:
+                    print("No module name 'google' found")
+                
+                query888 = takeCommand()
+                for j in search(query888,tld="co.in",num=10,stop=10,pause=2):
+                    print(j)
+                    speak(j)"""
