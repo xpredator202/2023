@@ -257,9 +257,75 @@ if __name__ == "__main__":
         elif'area of rectangle' in query:
             speak("let me prepare my self")
             speak("now first")
-            speak("tell me about ")
-            query = takecommand()
-            q=int(query)
+            speak("tell me the length of the object")
+            query1 = takecommand()
+            q=int(query1)
+            speak("now, tell me the breath of the object")
+            query2=takecommand()
+            qq=int(query2)
+            qqq=q*qq
+            speak(qqq)
+            print(qqq)
+
+        elif'area of square' in query:
+            speak(f"ok {userName}what is the number")
+            query1=takecommand()
+            w=int(query1)
+            ww=w*w
+            speak(f"the area of this square is{ww}, {userName}")
+            print(f"the area of this square object is {ww},{userName}")
+        
+        elif'area of trapezium' in query:
+            speak(f"ok {userName} tell me the first base of this trapezoid object")
+            query1= takecommand()
+            e=int(query1)
+            speak(f"ok i got the first base ,now{userName}tell me the 2 base of this trapezoid object")
+            query2=takecommand()
+            ee=int(query2)
+            speak(f"now tell me the Height of this trapezoid object")
+            query3=takecommand()
+            eee=int(query3)
+            eeee=e+ee/2*eee
+            speak(f"the area of this trapezium object is {eeee},{userName}")
+            print(f"the area of this trapezium object is {eeee}, {userName}")
+
+        elif 'area of triangle' in query:
+            speak(f"ok {userName} tell me the base of the triangular object")
+            query1 =takecommand()
+            r=int(query1)
+            speak(f"ok i got the base{userName}, now tell me the height of the object")
+            query2 =takecommand()
+            rr=int(query2)
+            rrr=r*rr/2
+            speak(f"the area of this object is {rrr}, {userName}")
+            print(f"the area of this object is {rrr}, {userName}")
+
+        elif'area of circle'in query:
+            speak(f"ok {userName}tell me the radius of the circle")
+            query1=takecommand()
+            t=int(query1)
+            tt=22/7*t*t
+            speak(f"the area of this object is {tt},{userName}")
+            print(f"the area of this object is {tt},{userName}")
+
+        elif'area of the cylinder'in query:
+            speak(f"ok {userName} , then tell me the radius of the object")
+            query1=takecommand()
+            y=int(query1)
+            speak("ok now tell me the height of the object ")
+            query2=takecommand()
+            yy=int(query2)
+            yyy=2*22/7*y*yy+2*22/7*y*y
+            speak(f"the area of this object is {yyy},{userName}")
+            print(f"the area of this object is {yyy}, {userName}")
+        
+        elif'area of the cube'in query:
+            speak(f"ok{userName}, then tell me the edge of the object")
+            query1=takecommand()
+            u=int(query1)
+            uu=6*u*u
+            speak(f"the area of this object is{uu},{userName}")
+            print(f"the area of this object is{uu},{userName}")
 
 
         elif "goodbye" in query or "offline"in query or "bye"in query or "i have to go " in query:
