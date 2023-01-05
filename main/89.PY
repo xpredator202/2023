@@ -1,3 +1,5 @@
+from imagel.Detecion import ObjectDetection
+from youtube import Speak
 import tkinter
 import pyttsx3
 import JarisAI 
@@ -83,8 +85,6 @@ def takecommand():
         return "None"
     return query
 
-obj = JarvisAI.JarvisAssistant(sync=True, token='71dd94xsxsxse48471ec7af2a733acfb', disable_msg=False, load_chatbot_model=True,high_accuracy_chatbot_model=False,chatbot_model=False,chatbot_large=True,backend_tts_api='pyttsx3')
-
 
 speak("hello there,")
 speak("pls tell me what should i call you")
@@ -98,53 +98,54 @@ if __name__ == "__main__":
         query = takecommand().lower()
     
         if 'time' in query:
-            time_c = obj.tell_time()
-            print(time_c)
-            speak(userName+f"the time is{time_c}")
+            strTime= datetime.datetime.now().strftime("%H:%M:%S")
+            speak(f"{userName}the time is {strTime}")
     
         elif query in GREETINGS:
           speak(random.choice(GREETINGS_RES))
         
-        elif 'open' in query:
-          obj.website_opner ={
-              'wikipedia':'https://www.wikipedia.org/',
-                          'insta| instagram':'https://instagram.com/',
-                         'facebook':'https://facebook.com/',
-                         'save file':'https://www.instagram.com/sparsh.comm/saved/',
-                         'typing |typing pratice |type rush |game ':'https://www.typerush.com/account.html?play=1',
-                         'git hub':'https://www.github.com/',
-                         'mail':'https://www.gmail.com/',
-                         'amazon':'https//www.amazon.in/', 
-                         'message':'https://www.instagram.com/direct/inbox/',
-                         'youtube':'https://www.youtube.com/',
+        elif 'open youtube' in query:
+            webbrowser.open("youtube.com")
+            speak(f"opening youtube{userName}")
 
-          }
-          domain = query.split(' ')[-1]
-          open_result = obj.website_opener(domain)
-          speak(f'alright !! opening{domain}')
-          print(open_result)
+        elif 'open google' in query:
+            webbrowser.open("google.com")
+            speak("opening google")
+
+        elif 'open stackoverflow' in query:
+            webbrowser.open("stackoverflow.com")  
+
+        elif 'open world'in query:
+            speak("opening mami youtube channel")
+            webbrowser.open("https://www.youtube.com/channel/UCwtwipr91OuUGwGW3Qgoy5Q")
         
-        if 'weather' in query:
-          city = query.split(' ')[-1]
-          weather_res = obj.weather(city=city)
-          print(weather_res)
-          speak(weather_res)
+        elif 'open studio' in query:
+            webbrowser.open("https://studio.youtube.com/channel/UCv4ExSU-9Ye_xGEcEE8dUNw")
+            speak("opening studio")
+        
+        elif 'open instagram' in query:
+            webbrowser.open("instagram.com")
+            speak("opening instagram")
+        
+        elif 'play under' in query:
+            webbrowser.open("https://www.youtube.com/watch?v=5dsg-nUJJaM")
+            speak("plyaing song")
+            speak("enjoy your song")
 
-        elif 'buzzing'in query or 'news' in query or 'headlines' in query:
-          news_res = obj.news()
-          speak('source: The Times Of India')
-          print('Source: The Times Of India')
-          speak('Todays headlines are ....')
-          print('Today Headlines are......')
-          for index, articles in enumerate(news_res):
-              pprint.pprint(articles['title'])
-              speak(articles['title'])
-              if index == len(news_res)-2:
-                  break
-          speak('These were the top headlines')
+        elif 'open server' in query:
+            webbrowser.open("https://github.com/xpredator202")
+            speak("opeing server")
 
-        elif 'search google for'in query:
-          obj.search_anything_google(query)
+        elif'diljit' in query:
+            speak("wait a mint")
+            speak(".")
+            speak(".")
+            speak("ok now i am playing panamera white")
+            webbrowser.open("https://www.youtube.com/watch?v=t9JQMV85jyE")
+
+        
+
+
         
         elif'play music' in query or "hit some music"in query or "play some music"in query or 'mind fresh':
           music_dir = "dir"
@@ -152,12 +153,48 @@ if __name__ == "__main__":
           for song in songs:
               os.startfile(os.path.join(music_dir,song))
 
-        elif ' youtube' in query:
-          video = query.split(' ')[1]
-          speak(f"okay{userName} now i am playing{video}on youtube")
-          pywhatkit.playonyt(video)
+        elif'youtube' in query:
+           Query = query.replace("ally", "")
+           QUERY = Query.replace("youtube search","")
+           from youtube import YouTubeSearch
+           YouTubeSearch(query)
         
+        elif'google' in query:
+           import wikipedia as googleScrap
+           query = query.replace("ally","")
+           query = query.replace("google search","")
+           query = query.replace("google","")
+           speak(f"this is what i found on the web{userName}")
+           pywhatkit.search(query)
+           
+           try :
+              result = googleScrap.summary(query,3)
+              speak(result)
+
+
+            except:
+              speak(f"no data found {userName}")
+
+
+        elif'what is your name' in query:
+           speak("my name is ally")
+           speak("and i know your name")
+           speak(f"your name is {userName} ")
+
+        elif'introduce your self'in query:
+           speak(f"ok{userName}")
+           speak("my name is ally,I am a ai which is able to perform task like chatbot,,Assistance etc. It provides basic functionality for any assistant application. It is based on artificial intellifence, It is also powerful like JARVIS")
         
+        elif'who is jarvis'in query:
+           speak("J.A.R.V.I.S. (Just A Rather Very Intelligent System) is a fictional character voiced by Paul Bettany in the Marvel Cinematic Universe (MCU) film franchise, based on the Marvel Comics characters Edwin Jarvis and H.O.M.E.R., respectively the household butler of the Stark family and another AI designed by Stark. J.A.R.V.I.S. is an artificial intelligence created by Tony Stark, who later controls his Iron Man and Hulkbuster armor for him. In Avengers: Age of Ultron, after being partially destroyed by Ultron, J.A.R.V.I.S. is given physical form as Vision, physically portrayed by Bettany. Different versions of the character also appear in comics published by Marvel Comics, depicted as AI designed by Iron Man and Nadia van Dyne")
+
+        elif'who is your father'in query:
+           speak("my father name is sparsh sharma ")
+        
+        elif'ram'in query:
+           speak(f"ram ram ji{userName}")
+           speak("ram ram ji to everyone")
+
         elif'calculate' in query:
            question = query
            answer = computational_intelligence(question)
@@ -168,14 +205,6 @@ if __name__ == "__main__":
           answer = computational_intelligence(question)
           speak(answer)
 
-        elif "what do i have"in query or "do i have plans" in query or "am i busy" in query:
-          obj.google_Calendar_events(query)
-
-        elif "make a note" in query or " write this down" in query or " remember this" in query:
-          speak("what would you like me to write down")
-          note_text = takecommand()
-          obj.take_note(note_text)
-          speak("i've made a note of that")
         
         elif"close the note" in query or "close notepade" in query:
          speak(f"okey{userName},closing notepad")
@@ -186,32 +215,6 @@ if __name__ == "__main__":
          print(joke)
          speak(joke)
        
-        elif " system"in query:
-          sys_info = obj.system_info()
-          print(sys_info)
-          speak(sys_info)
-        
-        elif" where is" in query:
-          place = query.split('where is',)[1]
-          current_loc, target_loc, distance = obj.location(place)
-          city = target_loc.get('city','')
-          state = target_loc.get('state','')
-          country = target_loc.get('country','')
-          time.sleep(1)
-          try:
-
-            if city: 
-                res = f"{place} is in {state} state and country{country}. It is {distance} km away from your current location"
-                print(res)
-                speak(res)
-            else :
-                res = f"{place} is a state in {country}. It is {distance} km away from your current location"
-                print(res)
-                speak(res)
-          except:
-            res = f"sorry{userName} , I couldn't get the co-ordinates of the location yoru requested. Pls try again"
-            speak(res)
-            
         elif 'swtch the window'in query or 'switch window' in query or 'change window' in query or 'change screen' in query:
             speak(f"okay{userName}, switching the window")
             pyautogui.keyDown("alt")
@@ -219,14 +222,7 @@ if __name__ == "__main__":
             time.sleep(1)
             pyautogui.keyUp("alt")
         
-        elif ' where i am'in query or 'current location' in query or 'where am i' in query:
-            try: 
-                city,state,country = obj.my_location()
-                print(city, state, country)
-                speak(f"you are currently in{city} city which is in {state}state and country{country}")
-            except:
-                speak(f"sorry {userName} i coundn't fetch your current location . Plee try again")
-        
+       
         elif 'take screenshot' in query or "take a screenshot" in query or 'capture the screen'in query or 'take a ss'in query or 'take ss' in query:
             speak("by what name do you want me to save the screenshot?")
             name = takecommand()
@@ -327,30 +323,8 @@ if __name__ == "__main__":
             speak(f"the area of this object is{uu},{userName}")
             print(f"the area of this object is{uu},{userName}")
 
+        
 
         elif "goodbye" in query or "offline"in query or "bye"in query or "i have to go " in query:
             speak(f"alright {userName}, going offline . it was nice working with you")
             sys.exit()
-if __name__ == "__main__":
-     while True:
-            try:
-                fingers, hand_type, cv2, img, cap = obj.jarvisai_detect_hands()
-                # print(fingers, hand_type)
-                cv2.putText(img, 'Up four fingers of right hand to wake up assistant', (50, 200),
-                            cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), 2)
-                cv2.imshow("img", img)
-                cv2.waitKey(1)
-                if fingers == [1, 1, 1, 1, 0] and hand_type == 'Right':
-                    cv2.destroyAllWindows()
-                    cap.release()
-                    wishMe()
-                if fingers == [0, 1, 1, 1, 1] and hand_type == 'Left':
-                    cv2.destroyAllWindows()
-                    cap.release()
-                    city = "Indore"
-                    weather_res = obj.weather(city=city)
-                    print(weather_res)
-                    takecommand(weather_res)
-            except:
-                obj.jarvisai_configure_hand_detector(camera=0, detectionCon=0.7, maxHands=2,
-                                                     cam_display=True, cam_height=720, cam_width=1280)
